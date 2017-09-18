@@ -157,7 +157,7 @@ augroup interoMaps
   " Heads up! These next two differ from the rest.
   au FileType haskell map <silent> <leader>ht <Plug>InteroGenericType
   au FileType haskell map <silent> <leader>hi <Plug>InteroType
-  " au FileType haskell nnoremap <silent> <leader>hT :InteroTypeInsert<CR>
+  au FileType haskell nnoremap <silent> <leader>hT :InteroTypeInsert<CR>
 
   " Navigation
   au FileType haskell nnoremap <silent> <leader>hd :InteroGoToDef<CR>
@@ -171,7 +171,7 @@ augroup END
 
 " == ghc-mod ==
 
-nmap <silent> <leader>hT :GhcModTypeInsert<CR>
+" nmap <silent> <leader>hT :GhcModTypeInsert<CR>
 nmap <silent> <leader>hs :GhcModSplitFunCase<CR>
 " nmap <silent> <leader>ht :GhcModType<CR>
 " nmap <silent> <leader>he :GhcModTypeClear<CR>
