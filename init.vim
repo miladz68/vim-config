@@ -119,6 +119,9 @@ Plug 'parsonsmatt/intero-neovim', { 'for': 'haskell' }
 Plug 'Twinside/vim-hoogle', { 'for': 'haskell' }
 Plug 'mpickering/hlint-refactor-vim', { 'for': 'haskell' }
 
+" Golang
+Plug 'fatih/vim-go', { 'for': 'go' }
+
 " Color Scheme
 Plug 'joshdick/onedark.vim'
 Plug 'sickill/vim-monokai'
@@ -126,6 +129,27 @@ Plug 'vim-scripts/wombat256.vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'jdkanani/vim-material-theme'
 call plug#end()
+
+" settigns for vim-go
+set autowrite
+autocmd FileType go nmap <leader>gb  <Plug>(go-build)
+" autocmd FileType go nmap <leader>gr  <Plug>(go-run)
+" autocmd FileType go nmap <leader>gt  <Plug>(go-test)
+autocmd FileType go nmap <leader>ne  :cnext<CR> 
+autocmd FileType go nmap <leader>pe  :cprevious<CR>
+
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+autocmd BufWritePost *.go silent call <SID>build_go_files() 
 
 
 augroup interoMaps
