@@ -132,9 +132,11 @@ call plug#end()
 
 " settigns for vim-go
 set autowrite
-autocmd FileType go nmap <leader>gb  <Plug>(go-build)
+" autocmd FileType go nmap <leader>gb  <Plug>(go-build)
 " autocmd FileType go nmap <leader>gr  <Plug>(go-run)
 " autocmd FileType go nmap <leader>gt  <Plug>(go-test)
+autocmd FileType go nmap <leader>gi  :GoInfo<CR>
+autocmd FileType go nmap <leader>gd  :GoDoc<CR>
 autocmd FileType go nmap <leader>ne  :cnext<CR> 
 autocmd FileType go nmap <leader>pe  :cprevious<CR>
 
@@ -148,7 +150,7 @@ function! s:build_go_files()
   endif
 endfunction
 
-autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
 autocmd BufWritePost *.go silent call <SID>build_go_files() 
 
 
