@@ -137,8 +137,8 @@ set autowrite
 " autocmd FileType go nmap <leader>gt  <Plug>(go-test)
 autocmd FileType go nmap <leader>gi  :GoInfo<CR>
 autocmd FileType go nmap <leader>gd  :GoDoc<CR>
-autocmd FileType go nmap <leader>ne  :cnext<CR> 
-autocmd FileType go nmap <leader>pe  :cprevious<CR>
+autocmd FileType go nmap <leader>gn  :cnext<CR> 
+autocmd FileType go nmap <leader>gp  :cprevious<CR>
 
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
