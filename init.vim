@@ -122,6 +122,9 @@ Plug 'mpickering/hlint-refactor-vim', { 'for': 'haskell' }
 " Golang
 Plug 'fatih/vim-go', { 'for': 'go' }
 
+" HTML CSS
+Plug 'mattn/emmet-vim'
+
 " Color Scheme
 Plug 'joshdick/onedark.vim'
 Plug 'sickill/vim-monokai'
