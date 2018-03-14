@@ -88,8 +88,10 @@ call plug#begin('~/.config/nvim/bundle')
 Plug 'jgdavey/tslime.vim'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'ervandew/supertab'
-Plug 'scrooloose/syntastic'
-Plug 'benekastah/neomake'
+" Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale' "I think this and syntastic collide
+Plug 'skywind3000/asyncrun.vim'
+" Plug 'benekastah/neomake'
 "Plug 'moll/vim-bbye'
 
 " Bars, panels, and files
@@ -132,6 +134,9 @@ Plug 'fatih/vim-go', { 'for': 'go' }
 
 " HTML CSS
 Plug 'mattn/emmet-vim', { 'for': 'html' }
+Plug 'ryym/vim-riot'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 
 " Color Scheme
 Plug 'joshdick/onedark.vim'
@@ -140,6 +145,29 @@ Plug 'vim-scripts/wombat256.vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'jdkanani/vim-material-theme'
 call plug#end()
+
+
+"settings for Ale
+"eslint 
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\}
+let g:ale_sign_error = '●' " Less aggressive than the default '>>'
+let g:ale_sign_warning = '.'
+let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
+" let g:ale_lint_on_save = 1
+" let g:ale_lint_on_text_changed = 0
+" autocmd BufWritePost *.js AsyncRun -post=checktime $HOME/.yarn/bin/eslint --fix %
+autocmd BufWritePost *.js ALEFix 
+" autocmd BufWritePost *.go silent call <SID>build_go_files() 
+
+"settings for emmet 
+let g:user_emmet_leader_key='<Tab>'
+let g:user_emmet_settings = {
+  \  'javascript.jsx' : {
+    \      'extends' : 'jsx',
+    \  },
+  \}
 
 " settigns for vim-go
 set autowrite
