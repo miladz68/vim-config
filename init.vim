@@ -85,6 +85,13 @@ call plug#begin('~/.config/nvim/bundle')
 
 
 " Support bundles
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 Plug 'jgdavey/tslime.vim'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'ervandew/supertab'
@@ -120,12 +127,13 @@ Plug 'christoomey/vim-tmux-navigator'
 
 
 " Haskell
+
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 Plug 'enomsg/vim-haskellConcealPlus', { 'for': 'haskell' }
-Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
+" Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
 Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 " Plug 'owickstrom/neovim-ghci', { 'for': 'haskell' }
-Plug 'parsonsmatt/intero-neovim', { 'for': 'haskell' }
+" Plug 'parsonsmatt/intero-neovim', { 'for': 'haskell' }
 Plug 'Twinside/vim-hoogle', { 'for': 'haskell' }
 Plug 'mpickering/hlint-refactor-vim', { 'for': 'haskell' }
 
@@ -137,6 +145,12 @@ Plug 'mattn/emmet-vim', { 'for': 'html' }
 Plug 'ryym/vim-riot'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'wokalski/autocomplete-flow'
+" For func argument completion
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 " Color Scheme
 Plug 'joshdick/onedark.vim'
@@ -144,7 +158,17 @@ Plug 'sickill/vim-monokai'
 Plug 'vim-scripts/wombat256.vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'jdkanani/vim-material-theme'
+Plug 'mhartington/oceanic-next'
 call plug#end()
+
+"colorscheme onedark
+"colorscheme wombat256mod
+" colorscheme monokai
+"set background=dark
+" colorscheme PaperColor
+colorscheme OceanicNext
+" set background=dark
+" colorscheme material-theme
 
 
 "settings for Ale
@@ -156,10 +180,15 @@ let g:ale_sign_error = '●' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
 let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 " let g:ale_lint_on_save = 1
-" let g:ale_lint_on_text_changed = 0
-" autocmd BufWritePost *.js AsyncRun -post=checktime $HOME/.yarn/bin/eslint --fix %
+let g:ale_lint_on_text_changed = 0
+" highlight clear ALEErrorSign
+" highlight clear ALEWarningSign
+" let g:ale_set_highlights = 10
+highlight ALEError ctermbg=DarkMagenta
+let g:airline#extensions#ale#enabled = 1
 autocmd BufWritePost *.js ALEFix 
-" autocmd BufWritePost *.go silent call <SID>build_go_files() 
+" autocmd FileType javascript set formatprg=prettier\ --stdin
+" autocmd BufWritePre *.js :normal gggqG
 
 "settings for emmet 
 let g:user_emmet_leader_key='<Tab>'
@@ -262,13 +291,6 @@ if (empty($TMUX))
   endif
 endif
 
-"colorscheme onedark
-"colorscheme wombat256mod
-"colorscheme monokai
-"set background=dark
-colorscheme PaperColor
-set background=dark
-" colorscheme material-theme
 
 " Text, tab and indent related {{{
 
@@ -402,3 +424,20 @@ endif
 
 let g:haskellmode_completion_ghc = 0 
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
+
+" == auto-complete-flow == settings 
+" deoplete
+
+let g:deoplete#enable_at_startup = 1
+
+" neosnippet
+        
+let g:neosnippet#enable_completed_snippet = 1
