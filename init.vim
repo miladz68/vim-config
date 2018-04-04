@@ -152,6 +152,8 @@ Plug 'wokalski/autocomplete-flow'
 
 " Ruby
 Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rake'
 
 " For func argument completion
 Plug 'Shougo/neosnippet'
