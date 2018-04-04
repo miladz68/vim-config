@@ -55,6 +55,9 @@ set expandtab
 set incsearch
 set mouse=a
 set history=1000
+
+filetype plugin indent on
+
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
@@ -146,6 +149,10 @@ Plug 'ryym/vim-riot'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'wokalski/autocomplete-flow'
+
+" Ruby
+Plug 'vim-ruby/vim-ruby'
+
 " For func argument completion
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
@@ -443,3 +450,18 @@ let g:deoplete#enable_at_startup = 1
 let g:neosnippet#enable_completed_snippet = 1
 
 map <esc> :noh<cr>
+
+" Ruby
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_classes_in_global = 1
+let g:rubycomplete_rails = 1
+
+if has("autocmd") && exists("+omnifunc")
+	autocmd Filetype *
+		    \	if &omnifunc == "" |
+		    \		setlocal omnifunc=syntaxcomplete#Complete |
+		    \	endif
+    endif
+" The above will set completion to this script only if a specific plugin does
+" not already exist for that filetype.
+
